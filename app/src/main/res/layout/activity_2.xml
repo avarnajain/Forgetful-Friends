@@ -13,17 +13,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="260dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Go Back"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.241" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="232dp"
         android:layout_height="63dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:lineSpacingExtra="10sp"
         android:text="KASA"
@@ -34,20 +38,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="8dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="346dp"
         android:layout_height="48dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="In Turkish, Kasa means safe!"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="359dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
         android:id="@+id/textView6"
@@ -97,6 +102,7 @@
         android:layout_width="74dp"
         android:layout_height="41dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="32dp"
         android:fontFamily="cursive"
         android:lineSpacingExtra="14sp"
@@ -106,14 +112,17 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="@+id/textView11"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView17" />
+        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="100dp"
         android:layout_height="41dp"
-        android:layout_marginStart="96dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="32dp"
         android:fontFamily="sans-serif-smallcaps"
         android:lineSpacingExtra="14sp"
@@ -122,12 +131,15 @@
         android:textColor="@color/place_autocomplete_prediction_secondary_text"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="75dp"
         android:layout_height="46dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="sans-serif-smallcaps"
         android:lineSpacingExtra="14sp"
         android:text="UNTIL"
@@ -135,8 +147,9 @@
         android:textColor="@color/place_autocomplete_prediction_primary_text_highlight"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="@+id/textView11"
-        tools:layout_editor_absoluteY="237dp" />
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
 
     <TextView
         android:id="@+id/textView13"
@@ -159,15 +172,14 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.625" />
+        app:layout_constraintVertical_bias="0.666" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="70dp"
         android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="136dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="124dp"
         android:fontFamily="cursive"
         android:lineSpacingExtra="14sp"
         android:text="KASA"
@@ -176,9 +188,7 @@
         android:textColorHighlight="@color/place_autocomplete_prediction_primary_text_highlight"
         android:textColorLink="@color/place_autocomplete_prediction_secondary_text"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView11"
-        app:layout_constraintVertical_bias="0.454" />
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
 
 </android.support.constraint.ConstraintLayout>
