@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
                 TimePickerDialog dialog = new TimePickerDialog (
                         MainActivity.this,
-                        android.R.style.Theme_Holo_Light_DarkActionBar,
+                        android.R.style.Theme_Holo_Light_Dialog,
                         mTimeSetListener,
                         hour, minute, false);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(1, 189,189, 189)));
