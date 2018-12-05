@@ -16,6 +16,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import android.app.Activity;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
@@ -32,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private double latitude;
     private LatLng currentLocation;
     private Button button;
-
-
+    private Button contactButton;
+    private final int REQUEST_CODE=99;
 
 
     LocationManager locationManager;
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //this is creating a link for the button on main activity to open the second activity
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +74,15 @@ public class MainActivity extends AppCompatActivity {
                 openActivity2();
             }
         });
-
-
+        //this is creating a link to open phone contacts
+        contactButton = findViewById(R.id.button2);
+        contactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                startActivityForResult(intentContact, REQUEST_CODE);
+            }
+        });
 
         // This is the location manager. It gets the user's location.
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -145,10 +157,36 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    //for button on main activity
     public void openActivity2() {
         Intent intent = new Intent(this, Activity2.class);
         startActivity(intent);
+    }
+
+    //for contact button
+    @Override
+    public void onActivityResult(int reqCode, int resultCode, Intent data) {
+        super.onActivityResult(reqCode, resultCode, data);
+        switch (reqCode) {
+            case (REQUEST_CODE):
+                if (resultCode == Activity.RESULT_OK) {
+                    Uri contactData = data.getData();
+                    Cursor c = getContentResolver().query(contactData, null, null, null, null);
+                    if (c.moveToFirst()) {
+                        String contactId = c.getString(c.getColumnIndex(ContactsContract.Contacts._ID));
+                        String hasNumber = c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+                        String num = "";
+                        if (Integer.valueOf(hasNumber) == 1) {
+                            Cursor numbers = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId, null, null);
+                            while (numbers.moveToNext()) {
+                                num = numbers.getString(numbers.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                                Toast.makeText(MainActivity.this, "Number="+num, Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                    break;
+                }
+        }
     }
 
 }
