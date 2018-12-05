@@ -1,9 +1,12 @@
 package com.example.cynthia.kasa;
 
 import android.Manifest;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -20,6 +23,8 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
@@ -28,9 +33,11 @@ import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.Calendar;
+
 
 public class MainActivity extends AppCompatActivity {
-    private final  String TAG = "PlaceAutoComplete";
+    private final  String TAG = "MainActivity";
     private static LatLng home;
     private String[] currentLocationArray;
     private double longitude;
@@ -39,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private Button contactButton;
     private final int REQUEST_CODE=99;
+    private TextView mDisplayTime;
+    private TimePickerDialog.OnTimeSetListener mTimeSetListener;
 
 
     LocationManager locationManager;
@@ -84,6 +93,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Time
+        mDisplayTime = findViewById(R.id.tvTime);
+        mDisplayTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int hour = cal.get(Calendar.HOUR);
+                int minute = cal.get(Calendar.MINUTE);
+
+                TimePickerDialog dialog = new TimePickerDialog (
+                        MainActivity.this,
+                        android.R.style.Theme_Holo_Light_DarkActionBar,
+                        mTimeSetListener,
+                        hour, minute, false);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(1, 189,189, 189)));
+                dialog.show();
+            }
+        });
+
+        mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                String amOrpm;
+                Calendar cal = Calendar.getInstance();
+                if (hourOfDay >= 12 && hourOfDay <= 23) {
+                    amOrpm = "PM";
+                } else {
+                    amOrpm = "AM";
+                }
+                if (hourOfDay > 12 && hourOfDay <= 23) {
+                    hourOfDay -= 12;
+                } else if (hourOfDay == 0) {
+                    hourOfDay += 12;
+                }
+                String min = String.valueOf(minute);
+                if (minute < 10) {
+                    min = "0" + min;
+                }
+                String time = hourOfDay + ":" + min + " " + amOrpm;
+                mDisplayTime.setText(time);
+            }
+        };
         // This is the location manager. It gets the user's location.
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         // This is the location listener.
@@ -188,5 +239,4 @@ public class MainActivity extends AppCompatActivity {
                 }
         }
     }
-
 }
