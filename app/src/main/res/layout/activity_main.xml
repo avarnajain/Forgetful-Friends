@@ -15,7 +15,7 @@
         android:text="Type your destination below"
         android:textAlignment="center"
         android:textSize="18sp"
-        android:textColor="#8b8989"
+        android:textColor="#fffacd"
         app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -60,31 +60,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="110dp"
-        android:layout_marginTop="72dp"
         android:layout_marginEnd="109dp"
         android:text="By when will you be home?"
         android:textColor="#8b8989"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        tools:layout_editor_absoluteY="316dp" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="138dp"
         android:layout_height="43dp"
         android:layout_marginStart="120dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="121dp"
         android:background="#cdc9c9"
         android:text="Select Contact"
         android:textColor="#fffacd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/place_autocomplete_fragment"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/place_autocomplete_fragment" />
 
     <fragment
         android:id="@+id/place_autocomplete_fragment"
