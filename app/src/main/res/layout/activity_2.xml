@@ -45,46 +45,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
         android:background="#fffadc"
         android:text="SNOOZE"
         android:textColor="@color/place_autocomplete_prediction_secondary_text"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/dismiss"
         app:layout_constraintStart_toEndOf="@+id/editButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
         android:id="@+id/dismiss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:background="#fffadc"
         android:text="DISMISS"
         android:textColor="@color/place_autocomplete_prediction_secondary_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/editButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="32dp"
         android:background="#fffadc"
         android:text="EDIT"
         android:textColor="@color/place_autocomplete_prediction_secondary_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.25" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="346dp"
-        android:layout_height="48dp"
+        android:layout_height="28dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -113,11 +116,31 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
+        android:id="@+id/textTime"
+        android:layout_width="65dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="00:00"
+        android:textAlignment="center"
+        android:textColor="@color/place_autocomplete_prediction_secondary_text"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/snooze"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
         android:id="@+id/textView11"
         android:layout_width="384dp"
         android:layout_height="175dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:background="#fffacd"
         app:layout_constraintEnd_toEndOf="parent"
@@ -128,8 +151,8 @@
         android:id="@+id/textView16"
         android:layout_width="74dp"
         android:layout_height="41dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="104dp"
         android:layout_marginBottom="32dp"
         android:fontFamily="cursive"
         android:lineSpacingExtra="14sp"
@@ -138,11 +161,8 @@
         android:textColor="@color/place_autocomplete_prediction_secondary_text"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="@+id/textView11"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toTopOf="@+id/textView11"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textView17"
@@ -159,15 +179,14 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView11"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="75dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:lineSpacingExtra="14sp"
@@ -177,15 +196,14 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="45dp"
+        android:layout_width="37dp"
         android:layout_height="38dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="136dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:lineSpacingExtra="14sp"
         android:text="BE"
@@ -194,8 +212,6 @@
         android:textColorHighlight="@color/place_autocomplete_prediction_primary_text_highlight"
         android:textColorLink="@color/place_autocomplete_prediction_secondary_text"
         android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView8"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView11" />
 
@@ -204,7 +220,7 @@
         android:layout_width="73dp"
         android:layout_height="40dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="128dp"
+        android:layout_marginEnd="136dp"
         android:fontFamily="cursive"
         android:lineSpacingExtra="14sp"
         android:text="KASA"
@@ -213,7 +229,7 @@
         android:textColorHighlight="@color/place_autocomplete_prediction_primary_text_highlight"
         android:textColorLink="@color/place_autocomplete_prediction_secondary_text"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView11"
         app:layout_constraintTop_toTopOf="@+id/textView11" />
 
 </android.support.constraint.ConstraintLayout>
