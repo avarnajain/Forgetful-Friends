@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private double longitude;
     private double latitude;
     private LatLng currentLocation;
-    private Button button;
-    private Button contactButton;
     private final int REQUEST_CODE=99;
     private TextView mDisplayTime;
     private TimePickerDialog.OnTimeSetListener mTimeSetListener;
@@ -76,15 +74,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //this is creating a link for the button on main activity to open the second activity
-        button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button nextActivity = findViewById(R.id.nextActivityButton);
+        nextActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivity2();
             }
         });
         //this is creating a link to open phone contacts
-        contactButton = findViewById(R.id.button2);
+        Button contactButton = findViewById(R.id.contactButton);
         contactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
