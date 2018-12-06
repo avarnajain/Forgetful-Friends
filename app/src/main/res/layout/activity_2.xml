@@ -43,9 +43,9 @@
     <Button
         android:id="@+id/snooze"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:background="#fffadc"
         android:text="SNOOZE"
@@ -58,31 +58,25 @@
         android:id="@+id/dismiss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:background="#fffadc"
         android:text="DISMISS"
         android:textColor="@color/place_autocomplete_prediction_secondary_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintBottom_toTopOf="@+id/textTime"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/editButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:background="#fffadc"
         android:text="EDIT"
         android:textColor="@color/place_autocomplete_prediction_secondary_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintBottom_toTopOf="@+id/textTime"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView5"
@@ -137,8 +131,8 @@
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="384dp"
-        android:layout_height="175dp"
+        android:layout_width="386dp"
+        android:layout_height="171dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
@@ -151,42 +145,44 @@
         android:id="@+id/textView16"
         android:layout_width="74dp"
         android:layout_height="41dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
         android:fontFamily="cursive"
         android:lineSpacingExtra="14sp"
         android:text="CASA"
         android:textAlignment="viewStart"
         android:textColor="@color/place_autocomplete_prediction_secondary_text"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="100dp"
         android:layout_height="41dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="12dp"
         android:fontFamily="sans-serif-smallcaps"
         android:lineSpacingExtra="14sp"
         android:text="YOU'RE"
         android:textAlignment="viewStart"
         android:textColor="@color/place_autocomplete_prediction_secondary_text"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="75dp"
-        android:layout_height="46dp"
+        android:layout_width="77dp"
+        android:layout_height="42dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:lineSpacingExtra="14sp"
@@ -194,14 +190,14 @@
         android:textAlignment="viewStart"
         android:textColor="@color/place_autocomplete_prediction_primary_text_highlight"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="37dp"
-        android:layout_height="38dp"
+        android:layout_width="38dp"
+        android:layout_height="36dp"
         android:layout_marginStart="136dp"
         android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-smallcaps"
@@ -217,10 +213,11 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="73dp"
-        android:layout_height="40dp"
+        android:layout_width="77dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="136dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="cursive"
         android:lineSpacingExtra="14sp"
         android:text="KASA"
@@ -229,7 +226,9 @@
         android:textColorHighlight="@color/place_autocomplete_prediction_primary_text_highlight"
         android:textColorLink="@color/place_autocomplete_prediction_secondary_text"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
         app:layout_constraintTop_toTopOf="@+id/textView11" />
 
 </android.support.constraint.ConstraintLayout>
