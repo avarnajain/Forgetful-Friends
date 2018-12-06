@@ -56,9 +56,9 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="151dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="51dp"
+        android:layout_width="155dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
         android:fontFamily="cursive"
         android:lineSpacingExtra="10sp"
@@ -72,10 +72,10 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="141dp"
-        android:layout_height="52dp"
+        android:layout_width="127dp"
+        android:layout_height="53dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="51dp"
+        android:layout_marginEnd="60dp"
         android:fontFamily="casual"
         android:lineSpacingExtra="10sp"
         android:text="friends"
