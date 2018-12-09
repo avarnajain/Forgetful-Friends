@@ -1,6 +1,9 @@
 package com.example.cynthia.kasa;
 
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +13,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,9 +48,39 @@ public class MainActivity extends AppCompatActivity {
     private String[] currentLocationArray;
     private double longitude;
     private double latitude;
-    private LatLng currentLocation;
+    private static LatLng currentLocation;
     private final int REQUEST_CODE=99;
     private TextView mDisplayTime;
+    private static int totalHours;
+    private static int totalMin;
+    private static String time;
+    private static int currentMin;
+    private int hour;
+
+    public static int getCurrentMin() {
+        return currentMin;
+    }
+
+    public static int getTotalMin() {
+        return totalMin;
+    }
+
+    public static int getTotalHours() {
+        return totalHours;
+    }
+
+    public static LatLng getHome() {
+        return home;
+    }
+
+    public static LatLng getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public static String getTime() {
+        return time;
+    }
+
     private TimePickerDialog.OnTimeSetListener mTimeSetListener;
 
 
@@ -66,6 +102,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+
+
+
+
+
     /** The location manager manages all location tracking.
      * The location listener updates us on when a user says yes or no to things and when the device moves.
      */
@@ -73,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //this is creating a link for the button on main activity to open the second activity
         Button nextActivity = findViewById(R.id.nextActivityButton);
         nextActivity.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
                 Calendar cal = Calendar.getInstance();
                 int hour = cal.get(Calendar.HOUR);
                 int minute = cal.get(Calendar.MINUTE);
+                currentMin = (hour * 60) + minute;
 
                 TimePickerDialog dialog = new TimePickerDialog (
                         MainActivity.this,
@@ -114,23 +159,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 String amOrpm;
-                Calendar cal = Calendar.getInstance();
+                totalHours = hourOfDay;
+                totalMin = minute;
                 if (hourOfDay >= 12 && hourOfDay <= 23) {
                     amOrpm = "PM";
                 } else {
                     amOrpm = "AM";
                 }
-                if (hourOfDay > 12 && hourOfDay <= 23) {
-                    hourOfDay -= 12;
+                if (hourOfDay > 12) {
+                    hour = hourOfDay - 12;
                 } else if (hourOfDay == 0) {
-                    hourOfDay += 12;
+                    hour = hourOfDay + 12;
+                } else {
+                    hour = hourOfDay;
                 }
                 String min = String.valueOf(minute);
                 if (minute < 10) {
                     min = "0" + min;
                 }
-                String time = hourOfDay + ":" + min + " " + amOrpm;
+                time = hour + ":" + min + " " + amOrpm;
                 mDisplayTime.setText(time);
+
+
+                System.out.println("currentMin: " + currentMin);
+                System.out.println("totalMin: " + ((totalHours*60) + totalMin));
             }
         };
         // This is the location manager. It gets the user's location.
@@ -205,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     //for button on main activity
     public void openActivity2() {

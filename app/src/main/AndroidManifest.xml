@@ -35,6 +35,10 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".Activity2"></activity>
+
+        <receiver android:name=".SnoozeNotificationReciever"/>
+        <receiver android:name=".TextNotificationReciever"/>
+        <receiver android:name=".CallNotificationReciever"/>
     </application>
 
 </manifest>

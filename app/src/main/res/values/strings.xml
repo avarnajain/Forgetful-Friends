@@ -1,9 +1,6 @@
 <resources>
-    <string name="app_name">Kasa</string>
-    <string name="i_m_on_my_way">i_m_on_my_way</string>
-    <string name="_00_00">_00_00</string>
-    <string name="by_when_will_you_be_home">by_when_will_you_be_home</string>
-    <string name="kasa">kasa</string>
-    <string name="type_in_your_contacts_phone_number">type_in_your_contacts_phone_number</string>
-    <string name="type_in_your_final_destination">type_in_your_final_destination</string>
+    <string name="app_name">Forgettable Friends</string>
+    <string name="SNOOZE">snooze</string>
+    <string name="TEXT">text</string>
+    <string name="CALL">call</string>
 </resources>
