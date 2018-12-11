@@ -63,7 +63,10 @@ public class MainActivity extends AppCompatActivity {
         return currentLocationArray;
     }
 
-
+    private String name;
+    private String id;
+    private String number;
+    private String homeSafe = "Your Friend is home safe!";
 
 
 
@@ -109,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intentContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-                startActivityForResult(intentContact, REQUEST_CODE);
+                startActivityForResult(intentContact, 1);
+
             }
         });
 
@@ -197,30 +201,45 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
+    // to remove characters other than digits from phone number
+    public static String stripNonDigits(final CharSequence input) {
+        final StringBuilder sb = new StringBuilder(input.length());
+        for(int i = 0; i < input.length(); i++){
+            final char c = input.charAt(i);
+            if(c > 47 && c < 58){
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
     //for contact button
     @Override
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
         switch (reqCode) {
-            case (REQUEST_CODE):
-                if (resultCode == Activity.RESULT_OK) {
+            case 1:
+                if (resultCode == Activity.RESULT_OK && data.getData() != null) {
                     Uri contactData = data.getData();
                     Cursor c = getContentResolver().query(contactData, null, null, null, null);
-                    if (c.moveToFirst()) {
-                        String contactId = c.getString(c.getColumnIndex(ContactsContract.Contacts._ID));
-                        String hasNumber = c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
-                        String num = "";
-                        if (Integer.valueOf(hasNumber) == 1) {
-                            Cursor numbers = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId, null, null);
-                            while (numbers.moveToNext()) {
-                                num = numbers.getString(numbers.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                                Toast.makeText(MainActivity.this, "Number="+num, Toast.LENGTH_LONG).show();
+                    if (c.getCount() > 0) {
+                        if (c.moveToNext()) {
+                            name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+                            id = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
+                            TextView displayName = findViewById(R.id.contactName);
+                            displayName.setText(name);
+                            if (Integer.parseInt(c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+                                Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + id, null, null);
+                                while (phones.moveToNext()) {
+                                    String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                                    number = stripNonDigits(phoneNumber);
+                                }
+                                phones.close();
                             }
                         }
                     }
-                    break;
+                    c.close();
                 }
+                break;
         }
     }
 }
