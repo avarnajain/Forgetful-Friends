@@ -40,14 +40,17 @@ import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.Arrays;
 import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity {
     private final  String TAG = "MainActivity";
-    private static LatLng home = null;
+    private static double[] home = new double[2];
     private static String[] currentLocationArray;
     private final int REQUEST_CODE=99;
+    private String[][] temp;
+    private String[] temp2 = new String[2];
     private static String[] home2 = new String[2];
 
 
@@ -62,13 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public static LatLng getHome() {
-        return home;
-    }
-
-
-
-    private TimePickerDialog.OnTimeSetListener mTimeSetListener;
 
 
     LocationManager locationManager;
@@ -125,7 +121,12 @@ public class MainActivity extends AppCompatActivity {
             // Regular updates from the gps on changes; ex: how much the device has moved.
             public void onLocationChanged(Location location) {
                 Log.i("Location", location.toString());
+                System.out.println("original: " + location.toString());
                 currentLocationArray = location.toString().trim().split(",");
+                System.out.println("current location array: " + currentLocationArray[0] + currentLocationArray[1]);
+                currentLocationArray[0] = currentLocationArray[0].split(" ")[1].split("\\.")[0];
+                currentLocationArray[1] = currentLocationArray[1].split("\\.")[0];
+                System.out.println("current location array: " + currentLocationArray[0] + currentLocationArray[1]);
 
             }
             @Override
@@ -163,13 +164,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
-                home = place.getLatLng();
-                home2 = place.getLatLng().toString().trim().split(",");
+                home[0] = place.getLatLng().latitude;
+                home[1] = place.getLatLng().longitude;
+                temp = new String[2][2];
+                home2 = Arrays.toString(home).trim().split(",");
+                temp[0] = home2[0].split("\\[")[1].trim().split("\\.");
+                temp[1] = home2[1].split("]")[0].trim().split("\\.");
+                home2[0] = home2[0].split("\\[")[1].trim().split("\\.")[0].trim() + "." + temp[0][1].trim().charAt(0) + temp[0][1].trim().charAt(1) + temp[0][1].trim().charAt(2);
+                home2[1] = home2[1].split("]")[0].trim().split("\\.")[0].trim() + "." + temp[1][1].trim().charAt(0) + temp[1][1].trim().charAt(1) + temp[1][1].trim().charAt(2);
                 System.out.println("home 2: " + home2[0] + home2[1]);
                 if ((home2.equals(currentLocationArray))) {
                     System.out.println("It worked!!");
                 }
-                System.out.println("current location: " + currentLocationArray[0] + currentLocationArray[1]);
+
                 Log.i(TAG, "Place: " + place.getName());
             }
 
