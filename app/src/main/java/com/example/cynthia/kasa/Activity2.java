@@ -79,9 +79,7 @@ public class Activity2 extends AppCompatActivity {
                 System.out.println("current location array: " + currentLocationArray[0] + " " + currentLocationArray[1]);
                 System.out.println("home: " + MainActivity.getHome2()[0] + " " + MainActivity.getHome2()[1]);
                 if (Arrays.equals(currentLocationArray, MainActivity.getHome2())) {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage("smsto:1" + MainActivity.getNumber(), null, "Your friend has reached their destination!" , null, null);
-
+                    sendSMS(MainActivity.getNumber(), "Your friend has reached their destination.");
                 }
             }
             @Override
@@ -118,5 +116,8 @@ public class Activity2 extends AppCompatActivity {
         Intent intent2 = new Intent(this, MainActivity.class);
         startActivity(intent2);
     }
-
+    public void sendSMS(String phoneNumber, String message) {
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage("smsto:1" + phoneNumber, null, message, null, null);
+    }
 }
