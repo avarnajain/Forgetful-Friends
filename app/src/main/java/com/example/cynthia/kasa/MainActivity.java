@@ -163,6 +163,15 @@ public class MainActivity extends AppCompatActivity {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 10, locationListener);
         }
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 2);
+            }
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, 3);
+            }
+        }
+
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
 
@@ -176,8 +185,8 @@ public class MainActivity extends AppCompatActivity {
                 home2 = Arrays.toString(home).trim().split(",");
                 temp[0] = home2[0].split("\\[")[1].trim().split("\\.");
                 temp[1] = home2[1].split("]")[0].trim().split("\\.");
-                home2[0] = home2[0].split("\\[")[1].trim().split("\\.")[0].trim() + "." + temp[0][1].trim().charAt(0) + temp[0][1].trim().charAt(1) + temp[0][1].trim().charAt(2);
-                home2[1] = home2[1].split("]")[0].trim().split("\\.")[0].trim() + "." + temp[1][1].trim().charAt(0) + temp[1][1].trim().charAt(1) + temp[1][1].trim().charAt(2);
+                home2[0] = home2[0].split("\\[")[1].trim().split("\\.")[0].trim() + "." + temp[0][1].trim().charAt(0) + temp[0][1].trim().charAt(1) + temp[0][1].trim().charAt(2) + temp[0][1].trim().charAt(3);
+                home2[1] = home2[1].split("]")[0].trim().split("\\.")[0].trim() + "." + temp[1][1].trim().charAt(0) + temp[1][1].trim().charAt(1) + temp[1][1].trim().charAt(2) + temp[1][1].trim().charAt(3);
                 System.out.println("home 2: " + home2[0] + home2[1]);
                 if ((home2.equals(currentLocationArray))) {
                     System.out.println("It worked!!");
@@ -220,26 +229,29 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(reqCode, resultCode, data);
         switch (reqCode) {
             case 1:
-                if (resultCode == Activity.RESULT_OK && data.getData() != null) {
-                    Uri contactData = data.getData();
-                    Cursor c = getContentResolver().query(contactData, null, null, null, null);
-                    if (c.getCount() > 0) {
-                        if (c.moveToNext()) {
-                            name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-                            id = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
-                            TextView displayName = findViewById(R.id.contactName);
-                            displayName.setText(name);
-                            if (Integer.parseInt(c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
-                                Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + id, null, null);
-                                while (phones.moveToNext()) {
-                                    String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                                    number = stripNonDigits(phoneNumber);
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+                    if (resultCode == Activity.RESULT_OK && data.getData() != null) {
+                        Uri contactData = data.getData();
+                        Cursor c = getContentResolver().query(contactData, null, null, null, null);
+                        if (c.getCount() > 0) {
+                            if (c.moveToNext()) {
+                                name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+                                id = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
+                                TextView displayName = findViewById(R.id.contactName);
+                                displayName.setText(name);
+                                if (Integer.parseInt(c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+                                    Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + id, null, null);
+                                    while (phones.moveToNext()) {
+                                        String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                                        number = stripNonDigits(phoneNumber);
+                                    }
+                                    phones.close();
                                 }
-                                phones.close();
                             }
                         }
+
+                        c.close();
                     }
-                    c.close();
                 }
                 break;
         }
