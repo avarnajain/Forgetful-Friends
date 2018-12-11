@@ -78,6 +78,7 @@ public class Activity2 extends AppCompatActivity {
                 currentLocationArray[1] = currentLocationArray[1].split("\\.")[0].trim() + "." + temp[1][1].trim().charAt(0) + temp[1][1].trim().charAt(1) + temp[1][1].trim().charAt(2) + temp[1][1].trim().charAt(3);
                 System.out.println("current location array: " + currentLocationArray[0] + " " + currentLocationArray[1]);
                 System.out.println("home: " + MainActivity.getHome2()[0] + " " + MainActivity.getHome2()[1]);
+                System.out.println("number: " + MainActivity.getNumber());
                 if (Arrays.equals(currentLocationArray, MainActivity.getHome2())) {
                     sendSMS(MainActivity.getNumber(), "Your friend has reached their destination.");
                 }
