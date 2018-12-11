@@ -100,7 +100,7 @@
         app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ff_logo3" />
+        app:srcCompat="@drawable/ff_logo4" />
 
     <TextView
         android:id="@+id/textView"
