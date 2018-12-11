@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private final int REQUEST_CODE=99;
     private String[][] temp;
     private String[] temp2 = new String[2];
-    private static String[] home2 = new String[2];
+    public static String[] home2 = new String[2];
 
 
 
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 10, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 5, locationListener);
         }
     }
 
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
         } else {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 10, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 5, locationListener);
         }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {

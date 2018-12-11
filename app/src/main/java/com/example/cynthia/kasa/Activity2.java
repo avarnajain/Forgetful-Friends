@@ -41,9 +41,7 @@ public class Activity2 extends AppCompatActivity {
 
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 10, locationListener);
-            if (Arrays.equals(currentLocationArray, MainActivity.getHome2())) {
-            }
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, locationListener);
         }
     }
 
@@ -78,9 +76,9 @@ public class Activity2 extends AppCompatActivity {
                 currentLocationArray[1] = currentLocationArray[1].split("\\.")[0].trim() + "." + temp[1][1].trim().charAt(0) + temp[1][1].trim().charAt(1) + temp[1][1].trim().charAt(2) + temp[1][1].trim().charAt(3);
                 System.out.println("current location array: " + currentLocationArray[0] + " " + currentLocationArray[1]);
                 System.out.println("home: " + MainActivity.getHome2()[0] + " " + MainActivity.getHome2()[1]);
-                System.out.println("number: " + MainActivity.getNumber());
                 if (Arrays.equals(currentLocationArray, MainActivity.getHome2())) {
                     sendSMS(MainActivity.getNumber(), "Your friend has reached their destination.");
+                    MainActivity.home2 = null;
                 }
             }
             @Override
@@ -108,7 +106,7 @@ public class Activity2 extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
         } else {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 10, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, locationListener);
         }
 
 
