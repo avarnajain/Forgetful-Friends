@@ -113,7 +113,6 @@ public class Activity2 extends AppCompatActivity {
     }
     public void openMainActivity() {
         Intent intent2 = new Intent(this, MainActivity.class);
-
         startActivity(intent2);
     }
 
