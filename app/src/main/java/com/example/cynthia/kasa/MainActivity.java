@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String name;
     private String id;
-    private static String number;
+    public static String number;
 
     public static String getNumber() {
         return number;
