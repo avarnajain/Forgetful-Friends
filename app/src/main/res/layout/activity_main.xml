@@ -12,85 +12,55 @@
         android:id="@+id/textView9"
         android:layout_width="310dp"
         android:layout_height="28dp"
-        android:layout_marginLeft="51dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="51dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="51dp"
         android:text="Type your destination below"
         android:textAlignment="center"
         android:textColor="#fffacd"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/nextActivityButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="203dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="51dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="101dp"
+        android:layout_marginEnd="104dp"
         android:layout_marginBottom="8dp"
         android:background="#fffacd"
         android:text="I'm on my way!"
-        android:textColor="@color/place_autocomplete_search_hint"
+        android:textColor="#BDBDBD"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactName" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="155dp"
-        android:layout_height="71dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="cursive"
-        android:lineSpacingExtra="10sp"
-        android:text="forgetful"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#fffacd"
-        android:textSize="45sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="127dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="60dp"
-        android:fontFamily="casual"
-        android:lineSpacingExtra="10sp"
-        android:text="friends"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/place_autocomplete_prediction_secondary_text"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/contactButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/contactButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="205dp"
         android:layout_height="45dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="114dp"
+        android:layout_marginEnd="100dp"
         android:background="#fffacd"
         android:text="Select Contact"
-        android:textColor="@color/place_autocomplete_search_hint"
+        android:textColor="#BDBDBD"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/place_autocomplete_fragment" />
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <fragment
         android:id="@+id/place_autocomplete_fragment"
@@ -118,5 +88,60 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contactButton" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="323dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="37dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ff_logo3" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="29dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="56dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="1."
+        android:textColor="#fffacd"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="29dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="110dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="2."
+        android:textColor="#fffacd"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="29dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="3."
+        android:textColor="#fffacd"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>
