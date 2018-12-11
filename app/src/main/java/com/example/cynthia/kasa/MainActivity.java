@@ -22,6 +22,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -65,10 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
     private String name;
     private String id;
-    private String number;
-    private String homeSafe = "Your Friend is home safe!";
+    private static String number;
 
-
+    public static String getNumber() {
+        return number;
+    }
 
     LocationManager locationManager;
     LocationListener locationListener;
@@ -194,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //for button on main activity
+    //for button Im on my way! button
     public void openActivity2() {
         Intent intent = new Intent(this, Activity2.class);
         if (home2 != null) {
