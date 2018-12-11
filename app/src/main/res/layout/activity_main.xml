@@ -8,21 +8,6 @@
     android:background="@color/place_autocomplete_search_hint">
 
     <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="109dp"
-        android:text="By when will you be home?"
-        android:textColor="#fffacd"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactButton" />
-
-    <TextView
         android:id="@+id/textView9"
         android:layout_width="310dp"
         android:layout_height="28dp"
@@ -43,16 +28,18 @@
         android:layout_width="203dp"
         android:layout_height="44dp"
         android:layout_marginStart="51dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="121dp"
         android:layout_marginEnd="51dp"
+        android:layout_marginBottom="47dp"
         android:background="#fffacd"
         android:text="I'm on my way!"
         android:textColor="@color/place_autocomplete_search_hint"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTime" />
+        app:layout_constraintTop_toBottomOf="@+id/contactButton" />
 
     <TextView
         android:id="@+id/textView"
@@ -93,14 +80,14 @@
         android:layout_width="205dp"
         android:layout_height="45dp"
         android:layout_marginStart="51dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="51dp"
         android:background="#fffacd"
         android:text="Select Contact"
         android:textColor="@color/place_autocomplete_search_hint"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/place_autocomplete_fragment" />
 
@@ -114,19 +101,5 @@
         app:layout_constraintHorizontal_bias="0.863"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-    <TextView
-        android:id="@+id/tvTime"
-        android:layout_width="104dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="51dp"
-        android:text="Select Time"
-        android:textColor="@color/place_autocomplete_prediction_secondary_text"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
 </android.support.constraint.ConstraintLayout>

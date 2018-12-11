@@ -1,6 +1,7 @@
 package com.example.cynthia.kasa;
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -44,42 +45,28 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     private final  String TAG = "MainActivity";
-    private static LatLng home;
-    private String[] currentLocationArray;
-    private double longitude;
-    private double latitude;
-    private static LatLng currentLocation;
+    private static LatLng home = null;
+    private static String[] currentLocationArray;
     private final int REQUEST_CODE=99;
-    private TextView mDisplayTime;
-    private static int totalHours;
-    private static int totalMin;
-    private static String time;
-    private static int currentMin;
-    private int hour;
+    private static String[] home2 = new String[2];
 
-    public static int getCurrentMin() {
-        return currentMin;
+
+
+    public static String[] getHome2() {
+        return home2;
     }
 
-    public static int getTotalMin() {
-        return totalMin;
+    public static String[] getCurrentLocationArray() {
+        return currentLocationArray;
     }
 
-    public static int getTotalHours() {
-        return totalHours;
-    }
+
 
     public static LatLng getHome() {
         return home;
     }
 
-    public static LatLng getCurrentLocation() {
-        return currentLocation;
-    }
 
-    public static String getTime() {
-        return time;
-    }
 
     private TimePickerDialog.OnTimeSetListener mTimeSetListener;
 
@@ -102,13 +89,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
     /** The location manager manages all location tracking.
      * The location listener updates us on when a user says yes or no to things and when the device moves.
      */
@@ -116,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //this is creating a link for the button on main activity to open the second activity
         Button nextActivity = findViewById(R.id.nextActivityButton);
@@ -125,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 openActivity2();
             }
         });
+
         //this is creating a link to open phone contacts
         Button contactButton = findViewById(R.id.contactButton);
         contactButton.setOnClickListener(new View.OnClickListener() {
@@ -135,78 +117,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Time
-        mDisplayTime = findViewById(R.id.tvTime);
-        mDisplayTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int hour = cal.get(Calendar.HOUR);
-                int minute = cal.get(Calendar.MINUTE);
-                currentMin = (hour * 60) + minute;
-
-                TimePickerDialog dialog = new TimePickerDialog (
-                        MainActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog,
-                        mTimeSetListener,
-                        hour, minute, false);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.argb(1, 189,189, 189)));
-                dialog.show();
-            }
-        });
-
-        mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                String amOrpm;
-                totalHours = hourOfDay;
-                totalMin = minute;
-                if (hourOfDay >= 12 && hourOfDay <= 23) {
-                    amOrpm = "PM";
-                } else {
-                    amOrpm = "AM";
-                }
-                if (hourOfDay > 12) {
-                    hour = hourOfDay - 12;
-                } else if (hourOfDay == 0) {
-                    hour = hourOfDay + 12;
-                } else {
-                    hour = hourOfDay;
-                }
-                String min = String.valueOf(minute);
-                if (minute < 10) {
-                    min = "0" + min;
-                }
-                time = hour + ":" + min + " " + amOrpm;
-                mDisplayTime.setText(time);
-
-
-                System.out.println("currentMin: " + currentMin);
-                System.out.println("totalMin: " + ((totalHours*60) + totalMin));
-            }
-        };
         // This is the location manager. It gets the user's location.
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         // This is the location listener.
-        LocationListener locationListener = new LocationListener() {
+        locationListener = new LocationListener() {
             @Override
             // Regular updates from the gps on changes; ex: how much the device has moved.
             public void onLocationChanged(Location location) {
                 Log.i("Location", location.toString());
                 currentLocationArray = location.toString().trim().split(",");
-                try {
-                    latitude = Double.parseDouble(currentLocationArray[0]);
-                } catch (NumberFormatException ex){
-                    return;
-                }
-                try {
-                    longitude = Double.parseDouble(currentLocationArray[1]);
-                } catch (NumberFormatException ex) {
-                    return;
-                }
-                currentLocation = new LatLng(longitude, latitude);
-            }
 
+            }
             @Override
             // Checks whether or not te user has given permission and if the app is working.
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -243,9 +164,12 @@ public class MainActivity extends AppCompatActivity {
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
                 home = place.getLatLng();
-                if (!(home.equals(currentLocation))) {
+                home2 = place.getLatLng().toString().trim().split(",");
+                System.out.println("home 2: " + home2[0] + home2[1]);
+                if ((home2.equals(currentLocationArray))) {
                     System.out.println("It worked!!");
                 }
+                System.out.println("current location: " + currentLocationArray[0] + currentLocationArray[1]);
                 Log.i(TAG, "Place: " + place.getName());
             }
 
@@ -262,7 +186,9 @@ public class MainActivity extends AppCompatActivity {
     //for button on main activity
     public void openActivity2() {
         Intent intent = new Intent(this, Activity2.class);
-        startActivity(intent);
+        if (home2 != null) {
+            startActivity(intent);
+        }
     }
 
     //for contact button
